@@ -11,7 +11,9 @@ class VideoListEntry extends React.Component {
   }
 
   handleClick() {
-    ReactDOM.render(<VideoPlayer video={this.props.video} />, document.getElementById('player'));
+    // ReactDOM.render(<VideoPlayer video={this.props.video} />, document.getElementById('player'));
+    console.log('event handler in the list entry fired!');
+    console.log(this.props.video);
   }
 
   // on click, re-render videoPlayer with whichever video data

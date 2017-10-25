@@ -9,6 +9,9 @@ class VideoPlayer extends React.Component {
     };
   }
 
+  handleNewVideo(newVideo) {
+    this.setState(newVideo);
+  }
 
   render() {
     return (
