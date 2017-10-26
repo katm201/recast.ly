@@ -7,12 +7,15 @@ var searchYouTube = (options, callback) => {
       type: 'video',
       q: options.query,
       maxResults: options.max,
-      key: window.YOUTUBE_API_KEY   
+      key: options.key   
     },
     success: function(data) {
-      console.log('Successfully received Data');
+      console.log('Successfully received Data, ', data);
       callback(data.items);
     },
+    failure: function() {
+      console.log('Data fetch failed, ', error);
+    }
   });
 };
 
