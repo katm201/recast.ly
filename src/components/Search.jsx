@@ -7,13 +7,20 @@ class Search extends React.Component {
 
   handleChange(event) {
     this.setState({value: event.target.value});
+    
+  }
+
+  handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      this.props.onClick(this.state.value);
+    }
   }
 
   render() {
     return (
       <div className="search-bar form-inline">
-        <input className="form-control" type="text" onChange={this.handleChange}/>
-        <button className="btn hidden-sm-down" onClick={() => { this.props.onClick(this.state.value); } }>
+        <input className="form-control" type="text" onChange={this.handleChange} onKeyDown={ (event) => { this.handleKeyPress(event); }}/>
+        <button className="btn hidden-sm-down" onClick={ () => { this.props.onClick(this.state.value); } }>
           <span className="glyphicon glyphicon-search"></span>
         </button>
       </div> 
