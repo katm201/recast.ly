@@ -1,38 +1,14 @@
-class VideoListEntry extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      thumbnail: this.props.video.snippet.thumbnails.default.url,
-      title: this.props.video.snippet.title,
-      description: this.props.video.snippet.description,
-      id: this.props.video.id.videoId,
-      vid: ('https://www.youtube.com/embed/' + this.props.video.id.videoId)
-    };
-  }
-
-  handleClick() {
-    // ReactDOM.render(<VideoPlayer video={this.props.video} />, document.getElementById('player'));
-    console.log('event handler in the list entry fired!');
-    console.log(this.props.video);
-  }
-
-  // on click, re-render videoPlayer with whichever video data
-    // <VideoPlayer video={this.props.video} />
-
-  render() {
-    return (
-      <div className="video-list-entry media">
-        <div className="media-left media-middle">
-          <img className="media-object" src={this.state.thumbnail} alt="" />
-        </div>
-        <div className="media-body">
-          <div onClick={this.handleClick.bind(this)} className="video-list-entry-title">{this.state.title}</div>
-          <div className="video-list-entry-detail">{this.state.description}</div>
-        </div>
-      </div>
-    );
-  }
-}
+var VideoListEntry = (props) => (
+  <div className="video-list-entry media">
+    <div className="media-left media-middle">
+      <img className="media-object" src={props.video.snippet.thumbnails.default.url} />
+    </div>
+    <div className="media-body">
+      <div className="video-list-entry-title">{props.video.snippet.title}</div>
+      <div className="video-list-entry-detail">{props.video.snippet.description}</div>
+    </div>
+  </div>
+);
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
