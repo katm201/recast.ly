@@ -7,7 +7,7 @@ class Search extends React.Component {
 
   handleChange(event) {
     this.setState({value: event.target.value});
-    
+    this.props.onClick(this.state.value); 
   }
 
   handleKeyPress(event) {
@@ -19,7 +19,7 @@ class Search extends React.Component {
   render() {
     return (
       <div className="search-bar form-inline">
-        <input className="form-control" type="text" onChange={this.handleChange} onKeyDown={ (event) => { this.handleKeyPress(event); }}/>
+        <input className="form-control" type="text" onChange={(event) => { this.handleChange(event); } } onKeyDown={ (event) => { this.handleKeyPress(event); }}/>
         <button className="btn hidden-sm-down" onClick={ () => { this.props.onClick(this.state.value); } }>
           <span className="glyphicon glyphicon-search"></span>
         </button>
