@@ -6,20 +6,28 @@ class App extends React.Component {
       currentVideo: this.props.videos[0]
     };
     this.handleVideoSelection = this.handleVideoSelection.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.search = this.search.bind(this);
   }
 
   handleVideoSelection(newVideo) {
     this.setState({currentVideo: newVideo});
   }
 
+  handleSearch(newVideos) {
+    this.setState({videos: newVideos});
+  }
+
   search(query) {
     var options = {
       query: query,
       max: 5,
+      key: window.YOUTUBE_API_KEY
     };
-    window.searchYouTube(options, this.setState({
-      currentList: data
-    }));
+
+    const searchCallback = this.handleSearch;
+
+    window.searchYouTube(options, searchCallback);
   }
   
   
@@ -28,7 +36,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div id="search"><Search /></div>
+            <div id="search"><Search onClick={this.search}/></div>
           </div>
         </nav>
         <div className="row">
