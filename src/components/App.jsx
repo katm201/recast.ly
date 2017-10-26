@@ -11,6 +11,17 @@ class App extends React.Component {
   handleVideoSelection(newVideo) {
     this.setState({currentVideo: newVideo});
   }
+
+  search(query) {
+    var options = {
+      query: query,
+      max: 5,
+    };
+    window.searchYouTube(options, this.setState({
+      currentList: data
+    }));
+  }
+  
   
   render() {
     return (
