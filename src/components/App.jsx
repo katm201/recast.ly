@@ -1,6 +1,15 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      videos: this.props.videos,
+      currentVideo: this.props.videos[0]
+    };
+    this.handleVideoSelection = this.handleVideoSelection.bind(this);
+  }
+
+  handleVideoSelection(newVideo) {
+    this.setState({currentVideo: newVideo});
   }
   
   render() {
@@ -13,10 +22,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div id="player"><VideoPlayer video={this.props.videos[0]} /></div>
+            <div id="player"><VideoPlayer video={this.state.currentVideo} /></div>
           </div>
           <div className="col-md-5">
-            <div id="videoList"><VideoList videos={this.props.videos}/></div>
+            <div id="videoList"><VideoList videos={this.state.videos} onClick={this.handleVideoSelection} /></div>
           </div>
         </div>
       </div>
