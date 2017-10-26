@@ -2,8 +2,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      initialSearch: this.props.searchYouTube,
       videos: this.props.videos,
-      currentVideo: this.props.videos[0]
+      currentVideo: this.props.videos[0] 
     };
     this.handleVideoSelection = this.handleVideoSelection.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -51,6 +52,11 @@ class App extends React.Component {
     );
   }
 }
+
+App.defaultProps = { 
+  videos: window.exampleVideoData, 
+  video: window.exampleVideoData[0]
+};
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 window.App = App;
