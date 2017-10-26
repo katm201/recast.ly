@@ -1,7 +1,22 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currentList: [],
+      currentlyPlaying: null
+    };
   }
+
+  search(query) {
+    var options = {
+      query: query,
+      max: 5,
+    };
+    window.searchYouTube(options, this.setState({
+      currentList: data
+    }));
+  }
+  
   
   render() {
     return (
