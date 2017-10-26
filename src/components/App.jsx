@@ -25,7 +25,7 @@ class App extends React.Component {
       key: window.YOUTUBE_API_KEY
     };
 
-    const searchCallback = this.handleSearch;
+    let searchCallback = this.handleSearch;
 
     window.searchYouTube(options, searchCallback);
   }
