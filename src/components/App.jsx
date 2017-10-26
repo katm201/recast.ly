@@ -17,6 +17,7 @@ class App extends React.Component {
 
   handleSearch(newVideos) {
     this.setState({videos: newVideos});
+    this.setState({currentVideo: newVideos[0]});
   }
 
   search(query) {
@@ -31,6 +32,9 @@ class App extends React.Component {
     window.searchYouTube(options, searchCallback);
   }
   
+  componentDidMount() {
+    this.search(this.props.searchYouTube);
+  }
   
   render() {
     return (
@@ -54,8 +58,8 @@ class App extends React.Component {
 }
 
 App.defaultProps = { 
-  videos: window.exampleVideoData, 
-  video: window.exampleVideoData[0]
+  searchYouTube: 'puppies',
+  videos: window.exampleVideoData
 };
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
