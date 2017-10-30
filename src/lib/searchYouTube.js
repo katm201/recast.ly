@@ -1,22 +1,23 @@
-var searchYouTube = (options, callback) => {
-  $.ajax({
-    url: 'https://www.googleapis.com/youtube/v3/search',
-    type: 'GET',
-    data: {
-      part: 'snippet',
-      type: 'video',
-      q: options.query,
-      maxResults: options.max,
-      key: options.key   
-    },
-    success: function(data) {
-      console.log('Successfully received Data');
-      callback(data.items);
-    },
-    failure: function() {
-      console.log('Data fetch failed, ', error);
-    }
-  });
+var searchYouTube = ({key, query, max = 5}, callback) => {
+  $.get('https://www.googleapis.com/youtube/v3/search', {
+    part: 'snippet',
+    key: key,
+    q: query,
+    maxResults: max,
+    type: 'video',
+    videoEmbeddable: 'true'
+  })
+    .done(({items}) => {
+      if (callback) {
+        callback(items);
+      }
+    })
+    .fail(({responseJSON}) => {
+      responseJSON.error.errors.forEach((err) =>
+        console.error(err)
+      );
+    });
 };
+
 
 window.searchYouTube = searchYouTube;
